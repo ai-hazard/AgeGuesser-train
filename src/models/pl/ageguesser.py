@@ -161,7 +161,7 @@ class AgeNetworkPL(pl.LightningModule):
        self.i = 0
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr, weight_decay=1e-4)
+        optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr, weight_decay=1e-4)
         scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.8)
         
         return {"optimizer": optimizer, "lr_scheduler": scheduler}

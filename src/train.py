@@ -29,7 +29,7 @@ def main(args):
         shuffle=True,
         drop_last=True,
         num_workers=args.num_workers,
-        prefetch_factor = 6
+        prefetch_factor = 4
     )
 
     gpus = 1 if torch.cuda.is_available() else 0
@@ -37,7 +37,7 @@ def main(args):
     callbacks = [
 
         ModelCheckpoint(
-            monitor="train/loss", 
+            monitor="train/w_mae", 
             dirpath=Path(args.log_dir) / "ckpts",
             verbose=True, 
             save_top_k=3, 
